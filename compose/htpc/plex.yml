@@ -1,0 +1,24 @@
+services:
+  # Plex - Media Server
+  plex:
+    image: plexinc/pms-docker:plexpass
+    container_name: plex
+    network_mode: 'host'
+    security_opt:
+      - no-new-privileges:true
+    restart: unless-stopped
+    devices:
+      - /dev/dri:/dev/dri # for hardware transcoding
+    volumes:
+      - $DOCKERDIR/appdata/plex:/config
+      - $DATADIR/data/media/:/data/media # Media Folder
+      - /dev/shm:/data/transcode # Offload transcoding to RAM
+    environment:
+      TZ: $TZ
+      HOSTNAME: "htpc"
+      PLEX_CLAIM_FILE: /run/secrets/plex_claim
+      PLEX_UID: $PUID
+      PLEX_GID: $PGID
+      ALLOWED_NETWORKS: $LOCAL_IPS
+    secrets:
+       - plex_claim
