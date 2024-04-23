@@ -7,14 +7,8 @@ secrets:
     file: $DOCKERDIR/secrets/plex_claim
   tunnel_token:
     file: $DOCKERDIR/secrets/token.json
-  nzbget_username:
-    file: $DOCKERDIR/secrets/nzbget_username
-  nzbget_password:
-    file: $DOCKERDIR/secrets/nzbget_password
   discord_webhook:
     file: $DOCKERDIR/secrets/discord_webhook
-
-
 
 
 ## Networks ##
